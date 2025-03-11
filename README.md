@@ -1,0 +1,1 @@
+本仓库用于存放Xmake配置文件，用来设置ARMGCC或者ARMCLANG编译器，并通过Xmake构建嵌入式的可执行文件
