@@ -101,7 +101,6 @@ target(ProjectName)
         "-Wno-license-management", -- 禁用对许可证管理的警告
         "-Wno-parentheses-equality", -- 禁用对括号等式比较的警告
         "-Wno-reserved-identifier", -- 禁用对保留标识符的警告
-        "-flto",--链接时优化
     { force = true }        -- 强制应用这些编译选项，覆盖默认设置
     )
     -- 设置汇编编译参数
@@ -112,7 +111,6 @@ target(ProjectName)
     )
     -- 设置链接参数
     add_ldflags(
-        "-flto",--链接时优化
         "--apcs=interwork",     -- 设置 APCS（ARM Procedure Call Standard）选项，启用 interwork（混合 ARM 和 Thumb 模式）
         "--info summarysizes",  -- 输出链接总结信息，包括各模块大小
         "--info totals",        -- 输出链接总信息，包括总大小等
