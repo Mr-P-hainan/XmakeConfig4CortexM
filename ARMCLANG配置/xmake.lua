@@ -77,43 +77,45 @@ target(ProjectName)
 
     -- 设置 C 编译参数
     add_cflags(
-    "-Os",               -- 设置优化等级，启用最高的优化级别，包括 -O3 以及一些额外的可能影响兼容性的优化
-    "-std=c99",             -- 指定 C 语言标准为 C99
-    "-fno-rtti",            -- 禁用 RTTI（运行时类型信息），减少代码体积和提高性能
-    "-funsigned-char",      -- 将 char 类型设置为无符号类型
-    "-fshort-enums",        -- 将枚举类型存储在最短的整数类型中，减少内存占用
-    "-fshort-wchar",        -- 将 wchar_t 类型设置为 16 位，减少内存占用
-    "-gdwarf-4",            -- 指定生成 DWARF 格式的调试信息，版本为 4
-    "-mfpu=" .. FloatVer,   -- 指定使用的浮点运算单元版本，FloatVer 是一个变量，表示具体的浮点版本
-    "-mfloat-abi=hard",     -- 指定使用硬件浮点 ABI，提高浮点运算性能
-    "-ffunction-sections",  -- 将每个函数放入单独的段中，有助于链接时优化
-    "-xc",                  -- 指定编译器以 C 语言模式编译
-    "-Wno-packed",          -- 禁用对 packed 属性的警告
-    "-Wno-missing-variable-declarations", -- 禁用对未声明变量的警告
-    "-Wno-missing-prototypes", -- 禁用对缺失原型的警告
-    "-Wno-missing-noreturn", -- 禁用对缺失 noreturn 属性的警告
-    "-Wno-sign-conversion", -- 禁用符号转换警告
-    "-Wno-nonportable-include-path", -- 禁用对非可移植包含路径的警告
-    "-Wno-reserved-id-macro", -- 禁用对保留标识符宏的警告
-    "-Wno-unused-macros",   -- 禁用对未使用宏的警告
-    "-Wno-documentation-unknown-command", -- 禁用对未知文档命令的警告
-    "-Wno-documentation",   -- 禁用对文档相关的警告
-    "-Wno-license-management", -- 禁用对许可证管理的警告
-    "-Wno-parentheses-equality", -- 禁用对括号等式比较的警告
-    "-Wno-reserved-identifier", -- 禁用对保留标识符的警告
+        "-Os",               -- 设置优化等级，启用最高的优化级别，包括 -O3 以及一些额外的可能影响兼容性的优化
+        "-std=c99",             -- 指定 C 语言标准为 C99
+        "-fno-rtti",            -- 禁用 RTTI（运行时类型信息），减少代码体积和提高性能
+        "-funsigned-char",      -- 将 char 类型设置为无符号类型
+        "-fshort-enums",        -- 将枚举类型存储在最短的整数类型中，减少内存占用
+        "-fshort-wchar",        -- 将 wchar_t 类型设置为 16 位，减少内存占用
+        "-gdwarf-4",            -- 指定生成 DWARF 格式的调试信息，版本为 4
+        "-mfpu=" .. FloatVer,   -- 指定使用的浮点运算单元版本，FloatVer 是一个变量，表示具体的浮点版本
+        "-mfloat-abi=hard",     -- 指定使用硬件浮点 ABI，提高浮点运算性能
+        "-ffunction-sections",  -- 将每个函数放入单独的段中，有助于链接时优化
+        "-xc",                  -- 指定编译器以 C 语言模式编译
+        "-Wno-packed",          -- 禁用对 packed 属性的警告
+        "-Wno-missing-variable-declarations", -- 禁用对未声明变量的警告
+        "-Wno-missing-prototypes", -- 禁用对缺失原型的警告
+        "-Wno-missing-noreturn", -- 禁用对缺失 noreturn 属性的警告
+        "-Wno-sign-conversion", -- 禁用符号转换警告
+        "-Wno-nonportable-include-path", -- 禁用对非可移植包含路径的警告
+        "-Wno-reserved-id-macro", -- 禁用对保留标识符宏的警告
+        "-Wno-unused-macros",   -- 禁用对未使用宏的警告
+        "-Wno-documentation-unknown-command", -- 禁用对未知文档命令的警告
+        "-Wno-documentation",   -- 禁用对文档相关的警告
+        "-Wno-license-management", -- 禁用对许可证管理的警告
+        "-Wno-parentheses-equality", -- 禁用对括号等式比较的警告
+        "-Wno-reserved-identifier", -- 禁用对保留标识符的警告
+        "-flto",--链接时优化
     { force = true }        -- 强制应用这些编译选项，覆盖默认设置
     )
     -- 设置汇编编译参数
     add_asflags(
-    "-g",                   -- 生成调试信息
-    "-masm=auto",           -- 自动选择汇编器模式
+        "-g",                   -- 生成调试信息
+        "-masm=auto",           -- 自动选择汇编器模式
     { force = true }        -- 强制应用这些汇编选项，覆盖默认设置
     )
     -- 设置链接参数
     add_ldflags(
-    "--apcs=interwork",     -- 设置 APCS（ARM Procedure Call Standard）选项，启用 interwork（混合 ARM 和 Thumb 模式）
-    "--info summarysizes",  -- 输出链接总结信息，包括各模块大小
-    "--info totals",        -- 输出链接总信息，包括总大小等
+        "-flto",--链接时优化
+        "--apcs=interwork",     -- 设置 APCS（ARM Procedure Call Standard）选项，启用 interwork（混合 ARM 和 Thumb 模式）
+        "--info summarysizes",  -- 输出链接总结信息，包括各模块大小
+        "--info totals",        -- 输出链接总信息，包括总大小等
     { force = true }        -- 强制应用这些链接选项，覆盖默认设置
     )
 

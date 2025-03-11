@@ -74,6 +74,7 @@ target(ProjectName)
     -- 设置C编译参数
     add_cflags(
         "-xc",
+        "-flto",--链接时优化
         "-Wno-invalid-source-encoding",--忽略无效的源码编码警告
         "-mcpu=" .. ArmCore, --指定目标处理器的 CPU 架构为 Cortex-M4
         "-mthumb", --启用 Thumb 指令集
@@ -105,6 +106,7 @@ target(ProjectName)
     add_ldflags(
         "-mcpu=" .. ArmCore,
         "-mthumb",
+        "-flto",--链接时优化
         "-mthumb-interwork",--设置APCS（ARM程序调用标准）为Thumb-ARM互工作模式
         "-mfloat-abi=hard",
         "-mfpu="..FloatVer,
